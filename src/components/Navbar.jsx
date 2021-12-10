@@ -1,63 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Menu, Typography, Avatar } from 'antd';
-import { Link } from 'react-router-dom';
-import { HomeOutlined, MoneyCollectOutlined, BulbOutlined, FundOutlined, MenuOutlined } from '@ant-design/icons';
-import icon from '../assets/logo.png';
+import React from "react";
+import { Link } from "react-router-dom";
+import icon from "../assets/logo.png";
+import { Navbar, Nav } from "react-bootstrap";
 
-const Navbar = () => {
-  const [activeMenu, setActiveMenu] = useState(true);
-  const [screenSize, setScreenSize] = useState(undefined);
-
-  useEffect(() => {
-    const handleResize = () => setScreenSize(window.innerWidth);
-
-    window.addEventListener('resize', handleResize);
-
-    handleResize();
-
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    if (screenSize <= 800) {
-      setActiveMenu(false);
-    } else {
-      setActiveMenu(true);
-    }
-  }, [screenSize]);
-
+const NavbarCoins = () => {
   return (
-    <div className="nav-container">
-      <div className="logo-container">
-        <Avatar src={icon} size={{
-      xs:100,
-      sm:100,
-      md:200,
-      lg:200,
-      xl:200,
-      xxl: 200,
-    }}/>
-        {/* <Typography.Title level={2} className="logo"><Link to="/">Coins Universe</Link></Typography.Title> */}
-        <Button className="menu-control-container" onClick={() => setActiveMenu(!activeMenu)}><MenuOutlined /></Button>
-      </div>
-      {activeMenu && (
-      <Menu theme="dark">
-        <Menu.Item icon={<HomeOutlined />}>
+    <Navbar bg="dark" expand="lg">
+      <Navbar.Brand href="#home">
+        <img
+          src={icon}
+          width="30"
+          height="30"
+          className="d-inline-block align-top"
+        />
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+        <Nav.Link href="/">
           <Link to="/">Home</Link>
-        </Menu.Item>
-        <Menu.Item icon={<FundOutlined />}>
+        </Nav.Link>
+        <Nav.Link href="/cryptocurrencies">
           <Link to="/cryptocurrencies">Cryptocurrencies</Link>
-        </Menu.Item>
-        <Menu.Item icon={<MoneyCollectOutlined />}>
+        </Nav.Link>
+        <Nav.Link href="/exchanges">
           <Link to="/exchanges">Exchanges</Link>
-        </Menu.Item>
-        <Menu.Item icon={<BulbOutlined />}>
+        </Nav.Link>
+        <Nav.Link href="/news">
+          {" "}
           <Link to="/news">News</Link>
-        </Menu.Item>
-      </Menu>
-      )}
-    </div>
+        </Nav.Link>
+      </Navbar.Collapse>
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default NavbarCoins;
