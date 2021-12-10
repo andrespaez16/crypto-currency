@@ -15,7 +15,7 @@
 }
 
 a:hover{
-  color: var(--pink) !important;
+  color: var(--light-blue) !important;
 }
 
 .app{
@@ -25,7 +25,7 @@ a:hover{
 
 .navbar{
   flex: 0.2;
-  background-color: rgb(0, 0, 0);
+  /* background-color: rgb(0, 0, 0); */
 }
 
 .main{
@@ -36,6 +36,10 @@ a:hover{
 /* .routes{
   padding: 20px;
 } */
+
+.span{
+color: white !important;;
+}
 .nav-container{
   position: fixed;
   left: 0;
@@ -69,6 +73,7 @@ ul{
   font-size: 1.2rem !important;
   background-color: rgb(0, 0, 0)!important;
   border: none !important;
+  color: white !important;
 }
 
 .loader{
