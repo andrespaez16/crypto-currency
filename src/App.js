@@ -7,12 +7,12 @@ const App = () => (
   <BrowserRouter>
     <>
       <NavbarCoins />
-      <div className="routes">
-        {/* <CryptoDetails /> */}
+      <Container>
+        <CryptoDetails />
         <Routes>
           <Route path="/" element={<HomePage />} />
         </Routes>
-      </div>
+      </Container>
     </>
   </BrowserRouter>
 );

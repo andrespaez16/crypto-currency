@@ -6,7 +6,7 @@ import { Navbar, Nav } from "react-bootstrap";
 const NavbarCoins = () => {
   return (
     <Navbar bg="dark" expand="lg">
-      <Navbar.Brand href="#home">
+      {/* <Navbar.Brand href="#home">
         <img
           src={icon}
           width="30"
@@ -15,8 +15,8 @@ const NavbarCoins = () => {
         />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-        <Nav.Link href="/">
+      <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end"> */}
+        {/* <Nav.Link href="/">
           <Link to="/">Home</Link>
         </Nav.Link>
         <Nav.Link href="/cryptocurrencies">
@@ -28,8 +28,8 @@ const NavbarCoins = () => {
         <Nav.Link href="/news">
           {" "}
           <Link to="/news">News</Link>
-        </Nav.Link>
-      </Navbar.Collapse>
+      //   </Nav.Link> */}
+      {/* // </Navbar.Collapse> */}
     </Navbar>
   );
 };
