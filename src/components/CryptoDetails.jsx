@@ -1,20 +1,23 @@
-import React, { useContext, useEffect, useRef, useState, memo } from "react";
-import { apiCallback } from "../services/http.js";
-import { Badge, Container } from "react-bootstrap";
-
+import React, { useEffect, useState} from "react";
+import { Masters } from "../services/domains/master";
+import { Badge} from "react-bootstrap";
 
 function CryptoDetails() {
   const [infoCrypto, setInfoCrypto] = useState({});
 
   useEffect(() => {
-    apiCallback("global/")
-      .then((res) => {
-        setInfoCrypto(res.data[0]);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    getInfo();
   }, []);
+
+  const getInfo = async () => {
+    const master = new Masters();
+    const response = await master.getInfoAllcoins();
+    if (response && response.data[0]) {
+      await setInfoCrypto(response.data[0]);
+    } else {
+      setInfoCrypto({});
+    }
+  };
 
   return (
     <>

@@ -1,8 +1,10 @@
-import axios from 'axios'
 
 const url = 'https://api.coinlore.net/api'
 
-
- export const apiCallback  = async (queryParams) => {
- return  axios(`${url}/${queryParams}`)
+export  function apiCallback(queryParams) {
+    return  fetch(`${url}/${queryParams}`).then((res) =>  {
+         return res.json()
+        }).then(response=>{
+        return {data:response} 
+    })  
 }
