@@ -42,6 +42,7 @@ const HomePage = () => {
       <TableCoin
         titles={headerTable}
         bodyTable={coinsAll}
+        dynamic={true}
         click={redirectToCoin}
       />
     </div>

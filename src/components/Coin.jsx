@@ -11,15 +11,27 @@ import {
   FormControl,
   Table,
 } from "react-bootstrap";
+import TableCoin from "../components/Table";
 
 export const Coin = () => {
   const params = useParams();
   const [infoCoin, setInfoCoin] = useState({});
   const [coinStats, setCoinStats] = useState({});
+  const [markets, setMarktest] = useState({});
+
+  const headerTable = [
+    { name: "name" },  
+    { name: "Pair" },
+    { name: "24h Volume" },
+    { name: "Price" },
+    { name: "Volume" },
+    { name: "Time" },
+  ];
 
   useEffect(() => {
     getInfoCoin();
     getStatsCoin();
+    getALLmarkets() 
   }, []);
 
   const getInfoCoin = async () => {
@@ -39,6 +51,17 @@ export const Coin = () => {
     if (response && response.data) {
       console.log(response.data, "desde stats entre");
       await setCoinStats(response.data);
+    } else {
+      setInfoCoin({});
+    }
+  };
+
+  const getALLmarkets = async () => {
+    const master = new Masters();
+    const response = await master.getMarkets(params.coinId);
+    if (response && response.data) {
+      console.log(response.data, "desde markets");
+      await setMarktest(response.data);
     } else {
       setInfoCoin({});
     }
@@ -144,32 +167,10 @@ export const Coin = () => {
         </Col>
         {/* //marktes */}
         <Col>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>
-                  <strong>Market Cap</strong>
-                </th>
-                <th>
-                  <strong>Vol(24H)</strong>
-                </th>
-                <th>
-                  <strong>24h Range</strong>
-                </th>
-                <th>
-                  <strong>Circulating</strong>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{infoCoin.market_cap_usd}</td>
-                <td>{infoCoin.volume24}</td>
-                <td>{infoCoin.volume24_native}</td>
-                <td>{infoCoin.csupply}</td>
-              </tr>
-            </tbody>
-          </Table>
+        <TableCoin
+           titles={headerTable}
+           bodyTable={markets}
+        />
         </Col>
       </Row>
     </Container>
@@ -177,3 +178,5 @@ export const Coin = () => {
 };
 
 export default Coin;
+
+
