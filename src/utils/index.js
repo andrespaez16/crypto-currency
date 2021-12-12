@@ -15,7 +15,7 @@ export const MASTERS_API = {
         return apiCallback(`coin/markets/?id=${id}`)
       },
       getSocialStats: (id) => {
-        return apiCallback(`coin/social_stats/'?id=${id}`)
+        return apiCallback(`coin/social_stats/?id=${id}`)
       },
       getAllExchanges: () => {
         return apiCallback('exchanges/')

@@ -7,8 +7,8 @@ const App = () => (
   <BrowserRouter>
     <>
       <NavbarCoins />
-      <Container>
         <CryptoDetails />
+      <Container>
         <Routes>
           <Route path="/" element={<HomePage />} />
         </Routes>
