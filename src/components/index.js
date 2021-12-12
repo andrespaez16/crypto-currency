@@ -1,5 +1,6 @@
 export { default as HomePage } from './HomePage';
 export { default as NavbarCoins } from './Navbar';
+export { default as Coin } from './Coin.jsx';
 export { default as News } from './News';
 export { default as Footer } from './Footer';
 export { default as Exchanges } from './Exchanges';

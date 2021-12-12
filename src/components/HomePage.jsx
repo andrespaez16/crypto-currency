@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { Masters } from "../services/domains/master";
+import { useNavigate } from "react-router-dom"
 
 const HomePage = () => {
+  const history = useNavigate()
   const [coinsAll, setCoinsAll] = useState([]);
 
   useEffect(() => {
@@ -18,6 +20,14 @@ const HomePage = () => {
       setCoinsAll([]);
     }
   };
+
+
+  const redirectToCoin =(coin, e)=>{
+    setTimeout(() => {
+      history(`/coin/${coin.id}`)
+    }, 300)
+  }
+  
 
   return (
     <div>
@@ -37,7 +47,7 @@ const HomePage = () => {
           {coinsAll &&
             Object.values(coinsAll).map((coin, index) => {
               return (
-                <tr key={index}>
+                <tr key={index} onClick={(e) => redirectToCoin(coin, e)}>
                   <td>{coin.name}</td>
                   <td>{coin.price_usd}</td>
                   <td>{coin.percent_change_1h}</td>
