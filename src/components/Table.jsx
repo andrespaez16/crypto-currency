@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
 
-const Table = (titles,bodyTable) => {
+const TableCoin = (bodyTable) => {
+  console.log(bodyTable, "desde el compnente andres");
   return (
     <div>
-      <Table striped bordered hover >
+      <Table striped bordered hover>
         <thead>
           <tr>
-            <th>First Name</th>
+            {bodyTable.titles &&
+              Object.values(bodyTable.titles).map((name, index) => {
+                return <th>{name.name}</th>;
+              })}
           </tr>
         </thead>
         <tbody>
-        {bodyTable &&
-            Object.values(bodyTable).map((field, index) => {
+          {bodyTable &&
+            Object.values(bodyTable.bodyTable).map((field, index) => {
               return (
-                <tr key={index} onClick={(e) => redirectToCoin(coin, e)}>
+                <tr key={index} onClick={(e) => bodyTable.click(field, e)}>
                   <td>{field.name}</td>
                   <td>{field.price_usd}</td>
                   <td>{field.percent_change_1h}</td>
@@ -31,4 +35,4 @@ const Table = (titles,bodyTable) => {
   );
 };
 
-export default Table;
+export default TableCoin;

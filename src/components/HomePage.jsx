@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Table } from "react-bootstrap";
 import { Masters } from "../services/domains/master";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import TableCoin from "../components/Table";
 
 const HomePage = () => {
-  const history = useNavigate()
+  const history = useNavigate();
   const [coinsAll, setCoinsAll] = useState([]);
 
   useEffect(() => {
@@ -21,45 +21,29 @@ const HomePage = () => {
     }
   };
 
-
-  const redirectToCoin =(coin, e)=>{
+  const redirectToCoin = (coin, e) => {
     setTimeout(() => {
-      history(`/coin/${coin.id}`)
-    }, 300)
-  }
-  
+      history(`/coin/${coin.id}`);
+    }, 300);
+  };
 
+  const headerTable = [
+    { name: "Coin" },
+    { name: "Price" },
+    { name: "1h" },
+    { name: "24h" },
+    { name: "7d" },
+    { name: "Market cap" },
+    { name: "24 Volume" },
+  ];
+  console.log(coinsAll, "desde appal");
   return (
     <div>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Coin</th>
-            <th>Price</th>
-            <th>1h</th>
-            <th>24h</th>
-            <th>7d</th>
-            <th>Market cap</th>
-            <th>24 Volume</th>
-          </tr>
-        </thead>
-        <tbody>
-          {coinsAll &&
-            Object.values(coinsAll).map((coin, index) => {
-              return (
-                <tr key={index} onClick={(e) => redirectToCoin(coin, e)}>
-                  <td>{coin.name}</td>
-                  <td>{coin.price_usd}</td>
-                  <td>{coin.percent_change_1h}</td>
-                  <td>{coin.percent_change_24h}</td>
-                  <td>{coin.percent_change_7d}</td>
-                  <td>{coin.market_cap_usd}</td>
-                  <td>{coin.volume24}</td>
-                </tr>
-              );
-            })}
-        </tbody>
-      </Table>
+      <TableCoin
+        titles={headerTable}
+        bodyTable={coinsAll}
+        click={redirectToCoin}
+      />
     </div>
   );
 };
