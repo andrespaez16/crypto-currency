@@ -12,12 +12,18 @@ import {
   Table,
 } from "react-bootstrap";
 import TableCoin from "../components/Table";
+import { Spinner } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 export const Coin = () => {
   const params = useParams();
   const [infoCoin, setInfoCoin] = useState({});
-  const [coinStats, setCoinStats] = useState({});
+  const [coinValue, setCoinValue] = useState(0);
+  const [coinPrice, setCoinPrice] = useState(0);
+  const [coinStats, setCoinStats] = useState('');
   const [markets, setMarktest] = useState({});
+  const [loading, setLoading] = useState(false);
+    const history = useNavigate();
 
   const headerTable = [
     { name: "name" },  
@@ -30,15 +36,14 @@ export const Coin = () => {
 
   useEffect(() => {
     getInfoCoin();
-    getStatsCoin();
     getALLmarkets() 
+    getStatsCoin();
   }, []);
 
   const getInfoCoin = async () => {
     const master = new Masters();
     const response = await master.getCoin(params.coinId);
     if (response && response.data[0]) {
-      console.log(response.data[0], "desde coin");
       await setInfoCoin(response.data[0]);
     } else {
       setInfoCoin({});
@@ -50,28 +55,38 @@ export const Coin = () => {
     const response = await master.getSocialStats(params.coinId);
     if (response && response.data) {
       console.log(response.data, "desde stats entre");
-      await setCoinStats(response.data);
+      await setCoinStats(response.data.reddit);
     } else {
-      setInfoCoin({});
+        setCoinStats({});
     }
   };
 
   const getALLmarkets = async () => {
+    setLoading(true) 
     const master = new Masters();
     const response = await master.getMarkets(params.coinId);
     if (response && response.data) {
-      console.log(response.data, "desde markets");
       await setMarktest(response.data);
     } else {
       setInfoCoin({});
     }
+    setLoading(false) 
   };
+
+  const redirectToExchange = (coin, e) => {
+    setTimeout(() => {
+      history(`/coin/${coin.id}`);
+    }, 300);
+  };
+
+
+
 
   return (
     <Container>
       <Row>
         <Col xs={5}>
-          <Card style={{ width: "20em", height: "20em" }}>
+          <Card c>
             <Card.Header as="h5">
               <strong>Rank {infoCoin.rank}</strong>
             </Card.Header>
@@ -93,10 +108,10 @@ export const Coin = () => {
               </Card.Text>
               <Button variant="primary">Buy</Button>
               <InputGroup className="mb-3 mt-3">
-                <InputGroup.Text>({infoCoin.symbol})</InputGroup.Text>
-                <FormControl aria-label="coin" />
+                <InputGroup.Text >({infoCoin.symbol})</InputGroup.Text>
+                <FormControl aria-label="coin" disabled value={coinValue}/>
                 <InputGroup.Text>$Price</InputGroup.Text>
-                <FormControl aria-label="price" />
+                <FormControl aria-label="price" disabled value={coinPrice}/>
               </InputGroup>
               <InputGroup className="mb-3">
                 <InputGroup.Text>USD</InputGroup.Text>
@@ -167,9 +182,23 @@ export const Coin = () => {
         </Col>
         {/* //marktes */}
         <Col>
+        {loading && (
+        <Spinner
+          style={{
+            width: "4em",
+            height: "4em",
+            position: "fixed",
+            left: "50%",
+            top: "40%",
+          }}
+          animation="border"
+          variant="info"
+        />
+      )}
         <TableCoin
            titles={headerTable}
            bodyTable={markets}
+           click={redirectToExchange}
         />
         </Col>
       </Row>

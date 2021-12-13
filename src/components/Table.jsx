@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
 
 const TableCoin = (bodyTable) => {
-  console.log(bodyTable, "desde el compnente andres");
-
   return (
     <div>
       <Table striped bordered hover>
