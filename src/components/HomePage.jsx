@@ -2,21 +2,23 @@ import React, { useEffect, useState } from "react";
 import { Masters } from "../services/domains/master";
 import { useNavigate } from "react-router-dom";
 import TableCoin from "../components/Table";
-import { Spinner } from "react-bootstrap";
+import { Spinner, Button, Row, Col } from "react-bootstrap";
 
 const HomePage = () => {
   const history = useNavigate();
   const [coinsAll, setCoinsAll] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    getSelection();
-  }, []);
+    getSelection(count);
+    console.log(count, 'desde el compnente')
+  }, [count]);
 
-  const getSelection = async () => {
+  const getSelection = async (data) => {
     setLoading(true);
     const master = new Masters();
-    const response = await master.getAllcoins();
+    const response = await master.getAllcoins(data);
     if (response && response.data && response.data.data) {
       setCoinsAll(response.data.data);
     } else {
@@ -40,10 +42,31 @@ const HomePage = () => {
     { name: "Market cap" },
     { name: "24 Volume" },
   ];
-  // top: 0 ,left: 0,right: 0 ,bottom: 0
-  console.log(coinsAll, "desde appal");
+
+  const Next =()=>{
+  setCount(count+1)
+  console.log(count,'esta es la cuenta')
+  }
+
+  const preview =()=>{
+    setCount(count-1)
+    console.log(count,'esta es la cuenta')
+   }
+ 
   return (
-    <div>
+    <Row
+      style={{
+        overflowX: "auto",
+      }}
+    >
+      <Row>
+        <Col className="text-center">
+          <Button variant="primary" onClick={(e)=>preview (e)}>Preview</Button>
+        </Col>
+        <Col className="text-center">
+          <Button variant="primary" onClick={(e)=>Next(e)}>Next</Button>
+        </Col>
+      </Row>
       {loading && (
         <Spinner
           style={{
@@ -57,13 +80,15 @@ const HomePage = () => {
           variant="info"
         />
       )}
-      <TableCoin
-        titles={headerTable}
-        bodyTable={coinsAll}
-        dynamic={true}
-        click={redirectToCoin}
-      />
-    </div>
+      <Col>
+        <TableCoin
+          titles={headerTable}
+          bodyTable={coinsAll}
+          dynamic={true}
+          click={redirectToCoin}
+        />
+      </Col>
+    </Row>
   );
 };
 export default HomePage;

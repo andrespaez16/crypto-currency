@@ -5,8 +5,8 @@ export const MASTERS_API = {
     getAllInfoCoins: () => {
         return apiCallback('global/')
       },
-      getAllCoins: () => {
-        return apiCallback('tickers/')
+      getAllCoins: (count) => {
+        return apiCallback(`tickers/?start=${count*100}&limit=100`)
       },
       getCoin: (id) => {
         return apiCallback(`ticker/?id=${id}`)

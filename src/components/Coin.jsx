@@ -111,7 +111,7 @@ export const Coin = () => {
                 <InputGroup.Text >({infoCoin.symbol})</InputGroup.Text>
                 <FormControl aria-label="coin" disabled value={coinValue}/>
                 <InputGroup.Text>$Price</InputGroup.Text>
-                <FormControl aria-label="price" disabled value={coinPrice}/>
+                <FormControl aria-label="price" disabled value={infoCoin.price_usd}/>
               </InputGroup>
               <InputGroup className="mb-3">
                 <InputGroup.Text>USD</InputGroup.Text>

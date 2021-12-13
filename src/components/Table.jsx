@@ -9,7 +9,7 @@ const TableCoin = (bodyTable) => {
           <tr>
             {bodyTable.titles &&
               Object.values(bodyTable.titles).map((name, index) => {
-                return <th>{name.name}</th>;
+                return <th key={index}>{name.name}</th>;
               })}
           </tr>
         </thead>

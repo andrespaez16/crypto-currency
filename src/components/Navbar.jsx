@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import icon from "../assets/logo.png";
-import { Navbar, Nav } from "react-bootstrap";
+// import { Navbar, Nav } from "react-bootstrap";
+import Navbar from 'react-bootstrap/Navbar'
 
 const NavbarCoins = () => {
   return (
@@ -15,11 +16,11 @@ const NavbarCoins = () => {
         />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      {/* <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-        <Nav.Link href="/">
-          <Link to="/">Home</Link>
-        </Nav.Link>
-        <Nav.Link href="/cryptocurrencies">
+      {/* <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end"> */}
+        {/* <Nav.Link to="/">
+          Home
+        </Nav.Link> */}
+        {/* <Nav.Link href="/cryptocurrencies">
           <Link to="/cryptocurrencies">Cryptocurrencies</Link>
         </Nav.Link>
         <Nav.Link href="/exchanges">
@@ -28,8 +29,8 @@ const NavbarCoins = () => {
         <Nav.Link href="/news">
           {" "}
           <Link to="/news">News</Link>
-        </Nav.Link>
-      </Navbar.Collapse> */}
+        </Nav.Link> */}
+      {/* </Navbar.Collapse> */}
     </Navbar>
   );
 };

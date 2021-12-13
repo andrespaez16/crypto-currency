@@ -6,8 +6,8 @@ export class Masters {
         const response = await MASTERS_API.getAllInfoCoins()
         return response
       }
-      async getAllcoins () {
-        const response = await MASTERS_API.getAllCoins()
+      async getAllcoins (count) {
+        const response = await MASTERS_API.getAllCoins(count)
         return response
       }
       async getCoin (id) {
