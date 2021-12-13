@@ -1,27 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import icon from "../assets/logo.png";
-// import { Navbar, Nav } from "react-bootstrap";
-import Navbar from 'react-bootstrap/Navbar'
+import { Navbar, Nav, Collapse } from "react-bootstrap";
+
 
 const NavbarCoins = () => {
   return (
-    <Navbar bg="dark" expand="lg">
+    <Navbar bg="dark" variant="dark" expand="lg">
       <Navbar.Brand href="#home">
-        <img
-          src={icon}
-          width="30"
-          height="30"
-          className="d-inline-block align-top"
-        />
+        <h4  style={{
+        margin: "0.5em",
+      }}className="ml-1">Universe Coin Colombia</h4>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      {/* <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end"> */}
-        {/* <Nav.Link to="/">
-          Home
-        </Nav.Link> */}
-        {/* <Nav.Link href="/cryptocurrencies">
-          <Link to="/cryptocurrencies">Cryptocurrencies</Link>
+      {/* <Collapse id="basic-navbar-nav" className="justify-content-end"> */}
+         <Nav.Link>
+          <Link to="/">Home</Link>
         </Nav.Link>
         <Nav.Link href="/exchanges">
           <Link to="/exchanges">Exchanges</Link>
@@ -29,8 +23,8 @@ const NavbarCoins = () => {
         <Nav.Link href="/news">
           {" "}
           <Link to="/news">News</Link>
-        </Nav.Link> */}
-      {/* </Navbar.Collapse> */}
+        </Nav.Link>
+      {/* </Collapse> */}
     </Navbar>
   );
 };
