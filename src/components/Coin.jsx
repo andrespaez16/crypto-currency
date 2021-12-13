@@ -20,13 +20,13 @@ export const Coin = () => {
   const [infoCoin, setInfoCoin] = useState({});
   const [coinValue, setCoinValue] = useState(0);
   const [coinPrice, setCoinPrice] = useState(0);
-  const [coinStats, setCoinStats] = useState('');
+  const [coinStats, setCoinStats] = useState("");
   const [markets, setMarktest] = useState({});
   const [loading, setLoading] = useState(false);
-    const history = useNavigate();
+  const history = useNavigate();
 
   const headerTable = [
-    { name: "name" },  
+    { name: "name" },
     { name: "Pair" },
     { name: "24h Volume" },
     { name: "Price" },
@@ -36,7 +36,7 @@ export const Coin = () => {
 
   useEffect(() => {
     getInfoCoin();
-    getALLmarkets() 
+    getALLmarkets();
     getStatsCoin();
   }, []);
 
@@ -57,12 +57,12 @@ export const Coin = () => {
       console.log(response.data, "desde stats entre");
       await setCoinStats(response.data.reddit);
     } else {
-        setCoinStats({});
+      setCoinStats({});
     }
   };
 
   const getALLmarkets = async () => {
-    setLoading(true) 
+    setLoading(true);
     const master = new Masters();
     const response = await master.getMarkets(params.coinId);
     if (response && response.data) {
@@ -70,7 +70,7 @@ export const Coin = () => {
     } else {
       setInfoCoin({});
     }
-    setLoading(false) 
+    setLoading(false);
   };
 
   const redirectToExchange = (coin, e) => {
@@ -79,8 +79,14 @@ export const Coin = () => {
     }, 300);
   };
 
-
-
+  const currency = (e) => {
+    let result = e.target.value / infoCoin.price_usd;
+    if (isNaN(result)) {
+      setCoinValue(0);
+    } else {
+      setCoinValue(result.toFixed(2));
+    }
+  };
 
   return (
     <Container>
@@ -108,14 +114,18 @@ export const Coin = () => {
               </Card.Text>
               <Button variant="primary">Buy</Button>
               <InputGroup className="mb-3 mt-3">
-                <InputGroup.Text >({infoCoin.symbol})</InputGroup.Text>
-                <FormControl aria-label="coin" disabled value={coinValue}/>
+                <InputGroup.Text>({infoCoin.symbol})</InputGroup.Text>
+                <FormControl aria-label="coin" disabled value={coinValue} />
                 <InputGroup.Text>$Price</InputGroup.Text>
-                <FormControl aria-label="price" disabled value={infoCoin.price_usd}/>
+                <FormControl
+                  aria-label="price"
+                  disabled
+                  value={infoCoin.price_usd}
+                />
               </InputGroup>
               <InputGroup className="mb-3">
                 <InputGroup.Text>USD</InputGroup.Text>
-                <FormControl aria-label="price" />
+                <FormControl aria-label="price" onChange={(e) => currency(e)} />
               </InputGroup>
             </Card.Body>
           </Card>
@@ -182,24 +192,24 @@ export const Coin = () => {
         </Col>
         {/* //marktes */}
         <Col>
-        {loading && (
-        <Spinner
-          style={{
-            width: "4em",
-            height: "4em",
-            position: "fixed",
-            left: "50%",
-            top: "40%",
-          }}
-          animation="border"
-          variant="info"
-        />
-      )}
-        <TableCoin
-           titles={headerTable}
-           bodyTable={markets}
-           click={redirectToExchange}
-        />
+          {loading && (
+            <Spinner
+              style={{
+                width: "4em",
+                height: "4em",
+                position: "fixed",
+                left: "50%",
+                top: "40%",
+              }}
+              animation="border"
+              variant="info"
+            />
+          )}
+          <TableCoin
+            titles={headerTable}
+            bodyTable={markets}
+            click={redirectToExchange}
+          />
         </Col>
       </Row>
     </Container>
@@ -207,5 +217,3 @@ export const Coin = () => {
 };
 
 export default Coin;
-
-

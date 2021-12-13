@@ -45,12 +45,10 @@ const HomePage = () => {
 
   const Next =()=>{
   setCount(count+1)
-  console.log(count,'esta es la cuenta')
   }
 
   const preview =()=>{
     setCount(count-1)
-    console.log(count,'esta es la cuenta')
    }
  
   return (
@@ -59,7 +57,7 @@ const HomePage = () => {
         overflowX: "auto",
       }}
     >
-      <Row>
+      <Row className="m-2">
         <Col className="text-center">
           <Button variant="primary" onClick={(e)=>preview (e)}>Preview</Button>
         </Col>
