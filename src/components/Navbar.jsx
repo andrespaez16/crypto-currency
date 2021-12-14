@@ -1,13 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Navbar, Nav, Collapse } from "react-bootstrap";
+import { Navbar, Nav} from "react-bootstrap";
 
 
 const NavbarCoins = () => {
-
-
-
-  
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Navbar.Brand href="#home">
@@ -22,10 +18,6 @@ const NavbarCoins = () => {
         </Nav.Link>
         <Nav.Link href="/exchanges">
           <Link to="/exchanges">Exchanges</Link>
-        </Nav.Link>
-        <Nav.Link href="/news">
-          {" "}
-          <Link to="/news">News</Link>
         </Nav.Link>
       {/* </Collapse> */}
     </Navbar>
