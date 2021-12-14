@@ -59,10 +59,10 @@ const HomePage = () => {
     >
       <Row className="m-2">
         <Col className="text-center">
-          <Button variant="primary" onClick={(e)=>preview (e)}>{'<<'}</Button>
+          <Button variant="primary" onClick={(e)=>preview (e)}><strong>{'<<'}</strong></Button>
         </Col>
         <Col className="text-center">
-          <Button variant="primary" onClick={(e)=>Next(e)}>{'>>'}</Button>
+          <Button variant="primary" onClick={(e)=>Next(e)}><strong>{'>>'}</strong></Button>
         </Col>
       </Row>
       {loading && (

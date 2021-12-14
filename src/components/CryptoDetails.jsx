@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Masters } from "../services/domains/master";
 import { Badge, Container } from "react-bootstrap";
+import currency from 'currency.js';
 
 function CryptoDetails() {
   const [infoCrypto, setInfoCrypto] = useState({});
@@ -23,22 +24,22 @@ function CryptoDetails() {
   return (
     <div className="text-center m-3">
       <Badge bg="light" text="dark">
-        Cryptocurrencies: {infoCrypto.coins_count}
+        Cryptocurrencies: {currency(infoCrypto.coins_count).format()}
       </Badge>
       <Badge bg="light" text="dark">
         Markets:{infoCrypto.active_markets}
       </Badge>
       <Badge bg="light" text="dark">
-        Market Cap:{infoCrypto.mcap_ath}
+        Market Cap:{currency(infoCrypto.mcap_ath).format()}
       </Badge>
       <Badge bg="light" text="dark">
-        Vol:{infoCrypto.total_volume}
+        Vol:{currency(infoCrypto.total_volume).format()}
       </Badge>
       <Badge bg="light" text="dark">
-        BTC Dominance:{ Math.round(infoCrypto.btc_d)}
+        BTC Dominance:{ Math.round(infoCrypto.btc_d)}%
       </Badge>
       <Badge bg="light" text="dark">
-        ETH Dominance{infoCrypto.btc_d}
+        ETH Dominance{infoCrypto.btc_d}%
       </Badge>
     </div>
   );

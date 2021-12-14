@@ -14,6 +14,8 @@ import {
 import TableCoin from "../components/Table";
 import { Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import currency from 'currency.js';
+
 
 export const Coin = () => {
   const params = useParams();
@@ -79,7 +81,7 @@ export const Coin = () => {
     }, 300);
   };
 
-  const currency = (e) => {
+  const currencyMoney = (e) => {
     let result = e.target.value / infoCoin.price_usd;
     if (isNaN(result)) {
       setCoinValue(0);
@@ -104,7 +106,7 @@ export const Coin = () => {
               <Card.Text>
                 <Container>
                   <Col>
-                    <span>{infoCoin.price_usd}</span>
+                    <span>{currency(infoCoin.price_usd).format()}</span>
                   </Col>
                   <Col>
                     <span>USD</span>
@@ -125,7 +127,7 @@ export const Coin = () => {
               </InputGroup>
               <InputGroup className="mb-3">
                 <InputGroup.Text>USD</InputGroup.Text>
-                <FormControl aria-label="price" onChange={(e) => currency(e)} />
+                <FormControl aria-label="price" onChange={(e) => currencyMoney(e)} />
               </InputGroup>
             </Card.Body>
           </Card>
@@ -150,10 +152,10 @@ export const Coin = () => {
             </thead>
             <tbody>
               <tr>
-                <td>{infoCoin.market_cap_usd}</td>
-                <td>{infoCoin.volume24}</td>
-                <td>{infoCoin.volume24_native}</td>
-                <td>{infoCoin.csupply}</td>
+                <td>{currency(infoCoin.market_cap_usd).format()}</td>
+                <td>{currency(infoCoin.volume24).format()}</td>
+                <td>{currency(infoCoin.volume24_native).format()}</td>
+                <td>{currency(infoCoin.csupply).format()}</td>
               </tr>
             </tbody>
           </Table>

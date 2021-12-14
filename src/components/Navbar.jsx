@@ -5,6 +5,10 @@ import { Navbar, Nav, Collapse } from "react-bootstrap";
 
 
 const NavbarCoins = () => {
+
+
+
+  
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Navbar.Brand href="#home">

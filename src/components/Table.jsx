@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
+import currency from 'currency.js';
 
 const TableCoin = (bodyTable) => {
   return (
@@ -19,12 +20,12 @@ const TableCoin = (bodyTable) => {
                 return (
                   <tr key={index} onClick={(e) => bodyTable.click(field, e)}>
                     <td>{field.name}</td>
-                    <td>{field.price_usd}</td>
+                    <td>{currency(field.price_usd).format()}</td>
                     <td>{field.percent_change_1h}</td>
                     <td>{field.percent_change_24h}</td>
                     <td>{field.percent_change_7d}</td>
-                    <td>{field.market_cap_usd}</td>
-                    <td>{field.volume24}</td>
+                    <td>{currency(field.market_cap_usd).format()}</td>
+                    <td>{currency(field.volume24).format()}</td>
                   </tr>
                 );
               })
@@ -33,9 +34,9 @@ const TableCoin = (bodyTable) => {
                   <tr key={index} onClick={(e) => bodyTable.click(field, e)}>
                     <td>{field.name}</td>
                     <td>{field.base}/{field.quote}</td>
-                    <td>{field.volume}</td>
-                    <td>{field.price_usd}</td>
-                    <td>{field.volume_usd}</td>
+                    <td>{currency(field.volume).format()}</td>
+                    <td>{currency(field.price_usd).format()}</td>
+                    <td>{currency(field.volume_usd).format()}</td>
                     <td>{field.time}</td>
                   </tr>
                 );

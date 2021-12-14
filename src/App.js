@@ -21,6 +21,9 @@ const App = () => (
         <Routes>
           <Route path="/coin/:coinId" element={<Coin />} />
         </Routes>
+        <Routes>
+          <Route path="/exchanges" element={<Exchanges/>} />
+        </Routes>
       </Container>
     </>
   </BrowserRouter>
