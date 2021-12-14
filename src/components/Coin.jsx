@@ -56,7 +56,6 @@ export const Coin = () => {
     const master = new Masters();
     const response = await master.getSocialStats(params.coinId);
     if (response && response.data) {
-      console.log(response.data, "desde stats entre");
       await setCoinStats(response.data.reddit);
     } else {
       setCoinStats({});

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Masters } from "../services/domains/master";
-import { Badge, Container } from "react-bootstrap";
+import { Badge} from "react-bootstrap";
 import currency from 'currency.js';
 
 function CryptoDetails() {

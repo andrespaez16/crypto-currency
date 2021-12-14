@@ -4,4 +4,5 @@ export { default as Coin } from './Coin.jsx';
 export { default as News } from './News';
 export { default as Footer } from './Footer';
 export { default as Exchanges } from './Exchanges';
+export { default as Exchange } from './Exchange';
 export { default as CryptoDetails } from './CryptoDetails';

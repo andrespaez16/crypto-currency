@@ -21,7 +21,7 @@ export const MASTERS_API = {
         return apiCallback('exchanges/')
       },
       getExchange: (id) => {
-        return apiCallback(`exchange/'?id=${id}`)
+        return apiCallback(`exchange/?id=${id}`)
       }
 
 }

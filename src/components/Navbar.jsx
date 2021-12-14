@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import icon from "../assets/logo.png";
 import { Navbar, Nav, Collapse } from "react-bootstrap";
 
 

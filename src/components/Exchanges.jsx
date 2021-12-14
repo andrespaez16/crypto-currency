@@ -9,7 +9,7 @@ const Exchanges = () => {
   const history = useNavigate();
   const [exchangesAll, setExchangesAll] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [count, setCount] = useState(0);
+ 
 
   useEffect(() => {
     getAllExchanges();
@@ -19,7 +19,6 @@ const Exchanges = () => {
     setLoading(true);
     const master = new Masters();
     const response = await master.getAllExchanges(data);
-    console.log(response.data, "desde exchanges");
     if (response && response.data && response.data) {
       setExchangesAll(response.data);
     } else {
@@ -28,17 +27,16 @@ const Exchanges = () => {
     setLoading(false);
   };
 
-  const redirectToExchange = (coin, e) => {
+  const redirectToExchange = (exchange, e) => {
     setTimeout(() => {
-      history(`/coin/${coin.id}`);
+      history(`/exchange/${exchange}`);
     }, 300);
   };
 
 
-  const redirectMAarketChange =(path)=>{
+  const redirectMarketChange =(path)=>{
         window.open(path)
   }
-  console.log(exchangesAll, "ahajaja");
   return (
     <Row
       style={{
@@ -66,17 +64,17 @@ const Exchanges = () => {
               Object.values(exchangesAll).map((name, index) => {
                 return (
                   <Col xs={4}>
-                    <Card className="mt-2">
+                    <Card key={index} className="mt-2" onClick={(e)=>redirectToExchange(name.id,e)}>
                       <Card.Header>
                         <h5>{name.name}</h5>
                       </Card.Header>
                       <Card.Body>
                         <Card.Text>
                           <p> Pairs:{name.pairs}</p>
-                          <span>Volume:{currency(name.volume_usd).format()}</span>
                           <p>Date of begining:{name.date_live}</p>
+                          <span>Volume:{currency(name.volume_usd).format()}</span>
                         </Card.Text>
-                        <Button variant="primary" onClick={(e)=>redirectMAarketChange(name.url,e) }>Go to site</Button>
+                        <Button variant="primary" onClick={(e)=>redirectMarketChange (name.url,e) }>Go to site</Button>
                       </Card.Body>
                     </Card>
                   </Col>

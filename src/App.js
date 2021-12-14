@@ -1,13 +1,14 @@
 import React from "react";
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
   Exchanges,
   HomePage,
   CryptoDetails,
   NavbarCoins,
   Coin,
+  Exchange,
 } from "./components";
-import { Container, Navbar, Nav } from "react-bootstrap";
+import { Container} from "react-bootstrap";
 
 const App = () => (
   <BrowserRouter>
@@ -23,6 +24,9 @@ const App = () => (
         </Routes>
         <Routes>
           <Route path="/exchanges" element={<Exchanges/>} />
+        </Routes>
+        <Routes>
+          <Route path="/exchange/:exchangeId" element={<Exchange/>} />
         </Routes>
       </Container>
     </>

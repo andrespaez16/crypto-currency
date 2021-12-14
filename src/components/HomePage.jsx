@@ -12,7 +12,6 @@ const HomePage = () => {
 
   useEffect(() => {
     getSelection(count);
-    console.log(count, 'desde el compnente')
   }, [count]);
 
   const getSelection = async (data) => {
