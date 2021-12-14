@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Masters } from "../services/domains/master";
 import { useNavigate } from "react-router-dom";
 import { Spinner, Button, Row, Col, Card, Container } from "react-bootstrap";
-import currency from 'currency.js';
-
+import currency from "currency.js";
 
 const Exchanges = () => {
   const history = useNavigate();
   const [exchangesAll, setExchangesAll] = useState([]);
   const [loading, setLoading] = useState(false);
- 
 
   useEffect(() => {
     getAllExchanges();
@@ -19,6 +17,7 @@ const Exchanges = () => {
     setLoading(true);
     const master = new Masters();
     const response = await master.getAllExchanges(data);
+    console.log(response, "desde exchanges");
     if (response && response.data && response.data) {
       setExchangesAll(response.data);
     } else {
@@ -33,10 +32,9 @@ const Exchanges = () => {
     }, 300);
   };
 
-
-  const redirectMarketChange =(path)=>{
-        window.open(path)
-  }
+  const redirectMarketChange = (path) => {
+    window.open(path);
+  };
   return (
     <Row
       style={{
@@ -64,7 +62,11 @@ const Exchanges = () => {
               Object.values(exchangesAll).map((name, index) => {
                 return (
                   <Col xs={4}>
-                    <Card key={index} className="mt-2" onClick={(e)=>redirectToExchange(name.id,e)}>
+                    <Card
+                      key={index}
+                      className="mt-2"
+                      onClick={name.pairs === 0?'':(e) => redirectToExchange(name.id, e)}
+                    >
                       <Card.Header>
                         <h5>{name.name}</h5>
                       </Card.Header>
@@ -72,9 +74,16 @@ const Exchanges = () => {
                         <Card.Text>
                           <p> Pairs:{name.pairs}</p>
                           <p>Date of begining:{name.date_live}</p>
-                          <span>Volume:{currency(name.volume_usd).format()}</span>
+                          <span>
+                            Volume:{currency(name.volume_usd).format()}
+                          </span>
                         </Card.Text>
-                        <Button variant="primary" onClick={(e)=>redirectMarketChange (name.url,e) }>Go to site</Button>
+                        <Button
+                          variant="primary"
+                          onClick={(e) => redirectMarketChange(name.url, e)}
+                        >
+                          Go to site
+                        </Button>
                       </Card.Body>
                     </Card>
                   </Col>
@@ -86,6 +95,5 @@ const Exchanges = () => {
     </Row>
   );
 };
-
 
 export default Exchanges;

@@ -26,8 +26,8 @@ export class Masters {
         const response = await MASTERS_API.getAllExchanges()
         return response
       }
-      async getExchange (id) {
-        const response = await MASTERS_API.getExchange(id)
+      async getExchangeInfo (id) {
+        const response = await MASTERS_API.getExchangeInfo(id)
         return response
       }
 }

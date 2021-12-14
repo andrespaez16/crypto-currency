@@ -6,7 +6,6 @@ export function apiCallback(queryParams) {
       return res.json();
     })
     .then((response) => {
-      console.log(response, "estopy desde http");
       return { data: response };
     })
     .catch((error) => {
