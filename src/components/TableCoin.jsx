@@ -31,7 +31,7 @@ const TableCoin = (bodyTable) => {
               })
             : Object.values(bodyTable.bodyTable).map((field, index) => {
                 return (
-                  <tr key={index} onClick={(e) => bodyTable.click(field, e)}>
+                  <tr key={index}>
                     <td>{field.name}</td>
                     <td>{field.base}/{field.quote}</td>
                     <td>{currency(field.volume).format()}</td>

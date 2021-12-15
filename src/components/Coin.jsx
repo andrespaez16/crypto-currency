@@ -54,6 +54,8 @@ export const Coin = () => {
     getStatsCoin();
   }, []);
 
+      // function that brings all info of coin
+
   const getInfoCoin = async () => {
     const master = new Masters();
     const response = await master.getCoin(params.coinId);
@@ -64,6 +66,8 @@ export const Coin = () => {
     }
   };
 
+   // function that brings all info of coinstasts
+
   const getStatsCoin = async () => {
     const master = new Masters();
     const response = await master.getSocialStats(params.coinId);
@@ -73,6 +77,8 @@ export const Coin = () => {
       setCoinStats({});
     }
   };
+
+   // function that brings all info of markets
 
   const getALLmarkets = async () => {
     setLoading(true);
@@ -85,13 +91,7 @@ export const Coin = () => {
     }
     setLoading(false);
   };
-
-  const redirectToExchange = (coin, e) => {
-    setTimeout(() => {
-      history(`/coin/${coin.id}`);
-    }, 300);
-  };
-
+   // function  of currency
   const currencyMoney = (e) => {
     let result = e.target.value / infoCoin.price_usd;
     if (isNaN(result)) {
@@ -231,7 +231,6 @@ export const Coin = () => {
             <TableCoin
               titles={headerTable}
               bodyTable={markets}
-              click={redirectToExchange}
             />
           </Col>
         </Row>

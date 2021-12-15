@@ -35,6 +35,8 @@ const HomePage = () => {
     getSelection(count);
   }, [count]);
 
+  // function that brings all the coins
+
   const getSelection = async (data) => {
     setLoading(true);
     const master = new Masters();
@@ -49,11 +51,15 @@ const HomePage = () => {
     setLoading(false);
   };
 
+    // function that redirect to coin
+
   const redirectToCoin = (coin, e) => {
     setTimeout(() => {
       history(`/coin/${coin.id}`);
     }, 300);
   };
+
+    // functions of pagination
 
   const next = () => {
     setCount(count + 1);
@@ -68,6 +74,8 @@ const HomePage = () => {
     }
   };
 
+      // functions of filters for name coin
+  
   const listCoin = (coins) => {
     const options = coins.map((coin) => {
       const list = {
@@ -87,6 +95,7 @@ const HomePage = () => {
     });
      setCoinsAll(filtered);
   };
+
 
   const reset=()=>{
     setCoinsAll(filter)

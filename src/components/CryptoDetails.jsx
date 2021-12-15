@@ -10,6 +10,8 @@ function CryptoDetails() {
     getInfo();
   }, []);
 
+      // function that brings info all coins 
+
   const getInfo = async () => {
     const master = new Masters();
     const response = await master.getInfoAllcoins();

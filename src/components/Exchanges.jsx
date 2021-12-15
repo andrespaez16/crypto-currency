@@ -15,6 +15,8 @@ const Exchanges = () => {
     getAllExchanges();
   }, []);
 
+    // function that brings all changes
+
   const getAllExchanges = async (data) => {
     setLoading(true);
     const master = new Masters();
@@ -26,6 +28,8 @@ const Exchanges = () => {
     }
     setLoading(false);
   };
+
+  // function that redirect to  exchange
 
   const redirectToExchange = (exchange, e) => {
     setTimeout(() => {
@@ -79,6 +83,7 @@ const Exchanges = () => {
                       >
                         <Card.Header>
                           <h5>{name.name}</h5>
+                          <p>{  name.pairs === 0?'No have pairs no working':'click me and check info'}</p>
                         </Card.Header>
                         <Card.Body>
                           <Card.Text>

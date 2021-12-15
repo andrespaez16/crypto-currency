@@ -32,6 +32,8 @@ export const Exchange = () => {
     getInfoExchange();
   }, []);
 
+    // function that brings all info of change
+
   const getInfoExchange = async () => {
     setLoading(true)  
     const master = new Masters();
