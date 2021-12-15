@@ -1,4 +1,4 @@
-import { MASTERS_API } from '../../utils/index'
+import { MASTERS_API } from '../utils/index'
 
 
 export class Masters {

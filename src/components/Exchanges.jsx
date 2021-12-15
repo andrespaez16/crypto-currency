@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Masters } from "../services/domains/master";
+import { Masters } from "../helpers/master";
 import { useNavigate } from "react-router-dom";
 import { Spinner, Button, Row, Col, Card, Container, Toast } from "react-bootstrap";
 import currency from "currency.js";

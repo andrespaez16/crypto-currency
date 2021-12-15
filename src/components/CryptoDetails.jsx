@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Masters } from "../services/domains/master";
+import { Masters } from "../helpers/master";
 import { Badge} from "react-bootstrap";
 import currency from 'currency.js';
 

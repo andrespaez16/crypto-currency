@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Masters } from "../services/domains/master";
+import { Masters } from "../helpers/master";
 import {
   Container,
   Row,
