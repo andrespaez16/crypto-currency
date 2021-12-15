@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Masters } from "../helpers/master";
 import { useNavigate } from "react-router-dom";
-import { Spinner, Button, Row, Col, Card, Container, Toast } from "react-bootstrap";
+import { Spinner, Button, Row, Col, Card, Container} from "react-bootstrap";
 import currency from "currency.js";
 import { NavbarCoins } from "../components";
 
