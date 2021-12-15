@@ -9,6 +9,7 @@ const HomePage = () => {
   const [coinsAll, setCoinsAll] = useState([]);
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
+  const [disabled, setDisabled] = useState(true);
   const headerTable = [
     { name: "Coin" },
     { name: "Price" },
@@ -45,10 +46,15 @@ const HomePage = () => {
 
   const Next = () => {
     setCount(count + 1);
+    setDisabled(false)
   };
 
   const preview = () => {
-    setCount(count - 1);
+    if(count <= 0){
+      setDisabled(true)
+    }else{
+      setCount(count - 1);
+    }
   };
 
 
@@ -59,7 +65,7 @@ const HomePage = () => {
         <Row>
           <Row className="m-2">
             <Col className="text-center">
-              <Button variant="primary" onClick={(e) => preview(e)}>
+              <Button variant="primary" onClick={(e) => preview(e)} disabled={disabled}>
                 <strong>{"<<"}</strong>
               </Button>
             </Col>
