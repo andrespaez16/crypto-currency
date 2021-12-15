@@ -91,6 +91,10 @@ const HomePage = () => {
      setCoinsAll(filtered);
   };
 
+  const reset=()=>{
+    setCoinsAll(filter)
+  }
+
   return (
     <>
       <NavbarCoins routesNav={routesNav} />
@@ -103,24 +107,29 @@ const HomePage = () => {
                 onClick={(e) => preview(e)}
                 disabled={disabled}
               >
-                <strong>{"<<"}</strong>
+                <strong>{"Prev"}</strong>
               </Button>
             </Col>
-            <Col xs={6} md={6}>
+            <Col xs={3} md={6}>
               <Form.Select
                 aria-label="Default select example"
                 onChange={(e) => filterBitcoin(e)}
               >
-                <option>Open this select menu</option>
+                <option>Filter coin</option>
                 {coinsList &&
                   coinsList.map((coin) => {
-                    return <option value={coin.value}  onChange={()=>filterBitcoin(coin.value)}>{coin.name}</option>;
+                    return <option value={coin.value}  onChange={()=>filterBitcoin(coin.value)}>{coin.name} </option>;
                   })}
               </Form.Select>
             </Col>
             <Col className="text-center">
+              <Button variant="primary" onClick={(e) => reset()}>
+                <strong>Reset</strong>
+              </Button>
+            </Col>
+            <Col className="text-center">
               <Button variant="primary" onClick={(e) => next(e)}>
-                <strong>{">>"}</strong>
+                <strong>{"Next"}</strong>
               </Button>
             </Col>
           </Row>
