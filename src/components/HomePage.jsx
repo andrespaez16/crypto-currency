@@ -2,7 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Masters } from "../helpers/master";
 import { useNavigate } from "react-router-dom";
 import { TableCoin, NavbarCoins } from "../components";
-import { Spinner, Button, Row, Col, Container,Input,InputGroup ,FormControl} from "react-bootstrap";
+import {
+  Spinner,
+  Button,
+  Row,
+  Col,
+  Container,
+  Input,
+  InputGroup,
+  FormControl,
+  Form,
+} from "react-bootstrap";
 
 const HomePage = () => {
   const history = useNavigate();
@@ -10,7 +20,8 @@ const HomePage = () => {
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
   const [disabled, setDisabled] = useState(true);
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState([]);
+  const [coinsList, setCoinsList] = useState([]);
   const headerTable = [
     { name: "Coin" },
     { name: "Price" },
@@ -33,6 +44,8 @@ const HomePage = () => {
     const response = await master.getAllcoins(data);
     if (response && response.data && response.data.data) {
       setCoinsAll(response.data.data);
+      setFilter(response.data.data)
+      listCoin(response.data.data);
     } else {
       setCoinsAll([]);
     }
@@ -45,7 +58,7 @@ const HomePage = () => {
     }, 300);
   };
 
-  const Next = () => {
+  const next = () => {
     setCount(count + 1);
     setDisabled(false);
   };
@@ -58,17 +71,25 @@ const HomePage = () => {
     }
   };
 
-  const filterBitcoin =(e)=>{
-    console.log(filter.length,'esto es la tamaño')
-    if(filter.length === 0){
-      console.log('entre')
-      setCount(0)
-    }{
-      setFilter(e.target.value)
-      const filtered = coinsAll.filter(coin=>coin.name.toLowerCase().includes(filter))
-      setCoinsAll(filtered)
-    }
-  }
+  const listCoin = (coins) => {
+    const options = coins.map((coin) => {
+      const list = {
+        id: coin.id,
+        value: coin.name,
+        name:coin.name
+      };
+      return list;
+    });
+    setCoinsList(options);
+  };
+
+  const filterBitcoin = (data) => {
+    const temp = filter
+    const filtered = temp.filter((coin) => {
+      return coin.name.includes(data.target.value);
+    });
+     setCoinsAll(filtered);
+  };
 
   return (
     <>
@@ -85,19 +106,20 @@ const HomePage = () => {
                 <strong>{"<<"}</strong>
               </Button>
             </Col>
-            <Col  xs={6} md={6}>
-              <InputGroup className="mb-3">
-                <FormControl
-                  placeholder="Write the bitcoin"
-                  aria-label="bitcoin"
-                  aria-describedby="basic-addon1"
-                  value={filter}
-                  onChange={(e)=>filterBitcoin(e)}
-                />
-              </InputGroup>
+            <Col xs={6} md={6}>
+              <Form.Select
+                aria-label="Default select example"
+                onChange={(e) => filterBitcoin(e)}
+              >
+                <option>Open this select menu</option>
+                {coinsList &&
+                  coinsList.map((coin) => {
+                    return <option value={coin.value}  onChange={()=>filterBitcoin(coin.value)}>{coin.name}</option>;
+                  })}
+              </Form.Select>
             </Col>
-            <Col className="text-center" >
-              <Button variant="primary" onClick={(e) => Next(e)}>
+            <Col className="text-center">
+              <Button variant="primary" onClick={(e) => next(e)}>
                 <strong>{">>"}</strong>
               </Button>
             </Col>
