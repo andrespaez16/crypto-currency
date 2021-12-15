@@ -3,11 +3,13 @@ import { Masters } from "../services/domains/master";
 import { useNavigate } from "react-router-dom";
 import { Spinner, Button, Row, Col, Card, Container } from "react-bootstrap";
 import currency from "currency.js";
+import { NavbarCoins } from "../components";
 
 const Exchanges = () => {
   const history = useNavigate();
   const [exchangesAll, setExchangesAll] = useState([]);
   const [loading, setLoading] = useState(false);
+  const routesNav = [{ path: "/", name: "Home" }];
 
   useEffect(() => {
     getAllExchanges();
@@ -36,7 +38,9 @@ const Exchanges = () => {
     window.open(path);
   };
   return (
-    <Row
+    <>
+         <NavbarCoins routesNav={routesNav} />
+     <Container
       style={{
         overflowX: "auto",
       }}
@@ -55,13 +59,12 @@ const Exchanges = () => {
         />
       )}
       <Col>
-        {" "}
         <Container>
           <Row>
             {exchangesAll &&
               Object.values(exchangesAll).map((name, index) => {
                 return (
-                  <Col xs={4}>
+                  <Col xs={12} md={4}>
                     <Card
                       key={index}
                       className="mt-2"
@@ -92,7 +95,9 @@ const Exchanges = () => {
           </Row>
         </Container>
       </Col>
-    </Row>
+    </Container>
+    </>
+   
   );
 };
 

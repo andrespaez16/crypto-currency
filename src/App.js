@@ -1,36 +1,36 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import {
-  Exchanges,
-  HomePage,
-  CryptoDetails,
-  NavbarCoins,
-  Coin,
-  Exchange,
-} from "./components";
-import { Container} from "react-bootstrap";
+import { BrowserRouter, Route, Routes, useRoutes } from "react-router-dom";
+import { Exchanges, HomePage, Coin, Exchange } from "./components";
+import { Container } from "react-bootstrap";
 
-const App = () => (
-  <BrowserRouter>
-    <>
-      <NavbarCoins />
-      <Container>
-        <CryptoDetails />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-        </Routes>
-        <Routes>
-          <Route path="/coin/:coinId" element={<Coin />} />
-        </Routes>
-        <Routes>
-          <Route path="/exchanges" element={<Exchanges/>} />
-        </Routes>
-        <Routes>
-          <Route path="/exchange/:exchangeId" element={<Exchange/>} />
-        </Routes>
-      </Container>
-    </>
-  </BrowserRouter>
-);
+const App = () => {
+  let routes = useRoutes([
+    {
+      path: "/",
+      element: <HomePage />,
+    },
+    {
+      path: "/coin/:coinId",
+      element: <Coin />,
+    },
+    {
+      path: "/exchanges",
+      element: <Exchanges />,
+    },
+    {
+      path: "/exchange/:exchangeId",
+      element: <Exchange />,
+    },
+  ]);
+  return routes;
+};
 
-export default App;
+const AppWrapper = () => {
+  return (
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
+};
+
+export default AppWrapper;

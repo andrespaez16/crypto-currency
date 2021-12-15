@@ -9,12 +9,8 @@ import {
   Row,
   Col,
   Card,
-  Button,
-  InputGroup,
-  FormControl,
-  Table,
 } from "react-bootstrap";
-import TableCoin from "../components/Table";
+import { TableCoin, NavbarCoins } from "../components";
 import { Spinner } from "react-bootstrap";
 
 export const Exchange = () => {
@@ -31,6 +27,7 @@ export const Exchange = () => {
     { name: "Volume" },
     { name: "Time" },
   ];
+  const routesNav = [{ path: "/", name: "Home" },{ path: "/exchanges", name: "Exchanges" }];
 
   useEffect(() => {
     getInfoExchange();
@@ -50,7 +47,8 @@ export const Exchange = () => {
   };
 
   return (
-    <div>
+    <>
+     <NavbarCoins routesNav={routesNav} />
       <Container>
         <Row>
           <Col xs={5}>
@@ -75,7 +73,7 @@ export const Exchange = () => {
           </Col>
           <Col xs={7}></Col>
           {/* //marktes */}
-          <Col>
+          <Col style={{ overflowX: "auto" }}>
             {loading && (
               <Spinner
                 style={{
@@ -93,7 +91,7 @@ export const Exchange = () => {
           </Col>
         </Row>
       </Container>
-    </div>
+    </>
   );
 };
 export default Exchange;

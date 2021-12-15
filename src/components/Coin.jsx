@@ -11,7 +11,7 @@ import {
   FormControl,
   Table,
 } from "react-bootstrap";
-import TableCoin from "../components/Table";
+import { TableCoin, NavbarCoins } from "../components";
 import { Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import currency from 'currency.js';
@@ -35,6 +35,8 @@ export const Coin = () => {
     { name: "Volume" },
     { name: "Time" },
   ];
+
+  const routesNav = [{ path: "/", name: "Home" },{ path: "/exchanges", name: "Exchange" }];
 
   useEffect(() => {
     getInfoCoin();
@@ -90,6 +92,8 @@ export const Coin = () => {
   };
 
   return (
+    <>
+    <NavbarCoins routesNav={routesNav}/>
     <Container>
       <Row>
         <Col xs={5}>
@@ -214,6 +218,8 @@ export const Coin = () => {
         </Col>
       </Row>
     </Container>
+    </>
+  
   );
 };
 
