@@ -1,7 +1,6 @@
 import React from "react";
-import { BrowserRouter, Route, Routes, useRoutes } from "react-router-dom";
+import { BrowserRouter,useRoutes } from "react-router-dom";
 import { Exchanges, HomePage, Coin, Exchange } from "./components";
-import { Container } from "react-bootstrap";
 
 const App = () => {
   let routes = useRoutes([
