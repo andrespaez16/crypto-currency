@@ -4,6 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+Hola como van espero que muy bien!!, el reto estuvo genial como siempre todas estas pruebas son nuevas experiencias que enriquecen el conocimiento y más sobre criptomonedas, esta prueba fue hecha en React js  con Bootstrap como framework de Ui también el campo de pruebas con el React-testing-library, cuenta con diseño responsive y web.
+
 In the project directory, you can run:
 
 ### `npm start`
